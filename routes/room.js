@@ -10,22 +10,16 @@ router.post('/create-new-room', async (req, res) => {
             roomcode: req.body.roomCode,
             hostemail: req.body.hostEmail,
             hostname: req.body.hostName,
-            hostsocketId: req.body.hostSocketId
-        }).then(async () => {
-            await Room.findOneAndUpdate({ roomcode: req.body.roomCode },
-                {
-                    $push: {
-                        members: {
-                            userSocketId: req.body.hostSocketId,
-                            roomCode: req.body.roomCode,
-                            memberName: req.body.hostName,
-                            memberEmail: req.body.hostEmail,
-                            isHost: true
-                        }
-                    }
-                }).then(() => {
-                    res.status(200).json({ success: true, msg: "room created!!!" })
-                })
+            hostsocketId: req.body.hostSocketId,
+            members: [{
+                userSocketId: req.body.hostSocketId,
+                roomCode: req.body.roomCode,
+                memberName: req.body.hostName,
+                memberEmail: req.body.hostEmail,
+                isHost: true
+            }]
+        }).then(() => {
+            return res.json({ success: true, message: "room creation succeeded" })
         })
     } catch (e) {
         return res.json({ success: false, message: "room creation failed" })
@@ -42,7 +36,7 @@ router.post('/join-room', async (req, res) => {
                         userSocketId: req.body.userSocketId,
                         roomCode: req.body.roomCode,
                         memberName: req.body.memberName,
-                        memberEmail : req.body.memberEmail
+                        memberEmail: req.body.memberEmail
                     }
                 }
             })
