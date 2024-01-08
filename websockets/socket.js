@@ -7,7 +7,7 @@ const socketIoHandler = (server) => {
 
     const io = new Server(server, {
         cors: {
-            origin: process.env.FRONTEND,
+            origin:"https://variable.onrender.com",
             methods: ["POST", "GET"]
         }
     })
