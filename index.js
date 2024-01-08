@@ -8,12 +8,12 @@ const socketIoHandler = require('./websockets/socket');
 const app = express();
 
 //middlewares
-const corsOrigin ={
-    origin:process.env.FRONTEND, //or whatever port your frontend is using
-    credentials:true,            
-    optionSuccessStatus:200,
-}
-app.use(cors(corsOrigin))
+
+app.use(cors(
+    {
+        origin : process.env.FRONTEND || "https://variable.onrender.com"
+    }
+))
 app.use(express.json())
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ parameterLimit: 1000000000000000, limit: '500mb', extended: true }));
