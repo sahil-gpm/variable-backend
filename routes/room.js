@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router();
 const Room = require('../models/Room')
 
-
 //create a new room 
 router.post('/create-new-room', async (req, res) => {
     try {
+
         await Room.create({
             roomcode: req.body.roomCode,
             hostemail: req.body.hostEmail,

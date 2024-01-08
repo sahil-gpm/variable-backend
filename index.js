@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ parameterLimit: 1000000000000000, limit: '500mb', extended: true }));
 app.use(cors({
-    origin:"https://variable.onrender.com"
+    origin:process.env.FRONTEND || "https://variable.onrender.com",
 }
 ))
 
