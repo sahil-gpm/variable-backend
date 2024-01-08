@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const connectToMongo = async() => {
-    await mongoose.connect(process.env.MONGO).then(()=>{console.log("connected to mongo")}).then(()=>{
+    await mongoose.connect(process.env.MONGO).then(()=>{
         console.log("mongo connected");
     }).catch((e)=>{
         console.log("error");
