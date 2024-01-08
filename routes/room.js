@@ -22,8 +22,7 @@ router.post('/create-new-room', async (req, res) => {
             return res.json({ success: true, message: "room creation succeeded" })
         })
     } catch (e) {
-        console.log(e.message);
-        return res.json({ success: false, message: "room creation failed" })
+        return res.json({ success: false, message: e.message })
     }
 })
 
