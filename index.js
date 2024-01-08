@@ -5,15 +5,15 @@ const connectToMongo = require('./db/dbConnect')
 const socketIoHandler = require('./websockets/socket');
 //express and socket io instance
 const app = express();
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://variable.onrender.com");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
 
 //middlewares
-app.use(cors({ origin: process.env.FRONTEND || "https://variable.onrender.com" }))
+app.use(cors({
+    origin: process.env.FRONTEND || "https://variable.onrender.com/",
+    allowedHeaders: {
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "https://variable.onrender.com/",
+    }
+}))
 app.use(express.json())
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ parameterLimit: 1000000000000000, limit: '500mb', extended: true }));
