@@ -7,7 +7,7 @@ const socketIoHandler = (server) => {
 
     const io = new Server(server, {
         cors: {
-            origin:"https://variable-ten.vercel.app",
+            origin:"https://variable.onrender.com",
             methods: ["POST", "GET"]
         }
     })
